@@ -11802,7 +11802,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import libraries necessary for this project</span>
@@ -11834,20 +11834,6 @@ div#notebook {
 <div class="output_wrapper">
 <div class="output">
 
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>C:\Users\BeGood\Anaconda3\lib\site-packages\sklearn\cross_validation.py:41: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the refactored classes and functions are moved. Also note that the interface of the new CV iterators are different from that of this module. This module will be removed in 0.20.
-  &#34;This module will be removed in 0.20.&#34;, DeprecationWarning)
-C:\Users\BeGood\Anaconda3\lib\site-packages\sklearn\learning_curve.py:22: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the functions are moved. This module will be removed in 0.20
-  DeprecationWarning)
-</pre>
-</div>
-</div>
 
 <div class="output_area">
 
@@ -12104,7 +12090,7 @@ IEEwASBBMAEgQTABIEEwASBBMAEgQTABIOH/AeM78BJgPm+RAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Minimum price of the data</span>
@@ -12264,7 +12250,7 @@ At first look, it seems that ratio of students to teachers in schools has a litt
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Import &#39;r2_score&#39;</span>
@@ -12446,7 +12432,7 @@ For example see this paper:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Defining features and target variable for prediction</span>
@@ -12463,7 +12449,7 @@ For example see this paper:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Import &#39;train_test_split&#39;</span>
@@ -13595,7 +13581,8 @@ Adding some extra points after converging is like a double-edged knife and may h
 In an overfitting model, because the model does not generalize well, training and validation curves do not actually converge and always there is always a noticable distance between them. So if the curves start to converge again by adding
 some extra points we have to suspect and check what's happened.</p>
 <p>An example of Cons of adding more points:<br>
-If the data is so noisy and we couldn’t clean it well, adding more points maybe causes a doubt for finding a good model.</p>
+Collecting more points is time consuming and can be expensive. 
+Also if the data is so noisy and we couldn’t clean it well, adding more points maybe causes a doubt for finding a good model.</p>
 
 </div>
 </div>
@@ -14091,8 +14078,8 @@ The model suffers from High Variance. Training and validation points are far fro
 <p>Max_depth (MD) of 4.</p>
 <p>In terms of score MD of 3 and 4 are close to each other, in fact MD of 4’s score is a little bit higher.</p>
 <p>I chose MD 4 for these reasons:</p>
-<p>1-  With MD of 3 Training and validation scores are near too close to each other than MD of 4 and it seems there is still a little bias in MD 3. <br>
-2-  After MD 4 validation score starts to decrease that shows MD 4 is turning point.</p>
+<p>1-  Even that MD 3 is a simpler model than MD 4, MD4 has a good bias/ variance trade-off. Training and testing scores are both higher than MD 3 but still too close to each other. <br>
+2-  After MD 4, validation score starts to decrease that shows MD 4 is turning point.</p>
 
 </div>
 </div>
@@ -14159,11 +14146,15 @@ The model suffers from High Variance. Training and validation points are far fro
 <p>However breaking data to three sets training, testing and validation causes that the model looses a bunch of data for learning.<br> 
 There is a solution for this problem (again) called cross-validation. Cross-validation means using a different part of training dataset as validation in different time sets.</p>
 <p>One type of cross-validation is K-fold cross-validation. <br>
-In K-fold cross-validation, the training dataset is breaking to (randomly) K buckets which, there is usually same points in each. One bucket is used as validating set and k-1 bucket as the training set. This process repeats k times.<br>
-The point is a bucket is used for validation exactly only once.</p>
+In K-fold cross-validation, the training dataset is breaking to (randomly) K buckets which, there is usually same points in each. One bucket is used as validating set and k-1 bucket as the training set. This process repeats k times. Each time we measure the score (or the error) and at the end of loop we get the average of scores (or errors)  then we evaluate the performance of the model.<br>
+Finally, we choose the model which has the highest evaluation score (or lower error).</p>
+<p>Tips:<br>
+1-  The point is a bucket is used for validation exactly only once.<br>
+2-  Cross-validation can be a time-consuming and computationally expensive process but as it does not waste too much data it has a major advantage when facing some problems. .<br>
+3-  It is recommended to splitting the data randomly into buckets to remove any probable bias.</p>
 <p>Benefits of using Cross-validation technique with grid search: <br>
-1-  One technique to find the optimum model in grid search is finding the model which has the highest F1 score. For Calculating the F1 Score, the data that is used in grid search is the cross-validation data.<br>
-2-  As Grid search is an exhaustive brute-force technique there is always a probability of leak of testing information in this technique because of lurching the value of hyperparameters for finding the optimum value.</p>
+1-  One technique to find the optimum model in grid search is finding the model which has the highest evaluation score like F1 SCore. For Calculating the evaluation Score, the data that is used in grid search is the cross-validation data.<br>
+2-  As Grid search is an exhaustive brute-force technique there is always a probability of leak of testing information in this technique because of lurching the value of hyperparameters for finding the optimum value. This technique helps to prevent this problem happens.</p>
 
 </div>
 </div>
@@ -14199,7 +14190,7 @@ For the <code>fit_model</code> function in the code cell below, you will need to
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Import &#39;make_scorer&#39;, &#39;DecisionTreeRegressor&#39;, and &#39;GridSearchCV&#39;</span>
@@ -14218,7 +14209,7 @@ For the <code>fit_model</code> function in the code cell below, you will need to
     <span class="n">cv_sets</span> <span class="o">=</span> <span class="n">ShuffleSplit</span><span class="p">(</span><span class="n">n_splits</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">train_size</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
 
     <span class="c1"># TODO: Create a decision tree regressor object</span>
-    <span class="n">regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">()</span>
+    <span class="n">regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
 
     <span class="c1"># TODO: Create a dictionary for the parameter &#39;max_depth&#39; with a range from 1 to 10</span>
     <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">))}</span>
@@ -14266,7 +14257,7 @@ For the <code>fit_model</code> function in the code cell below, you will need to
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Fit the training data to the model using grid search</span>
@@ -14307,6 +14298,7 @@ For the <code>fit_model</code> function in the code cell below, you will need to
 <p><strong> Hint: </strong> The answer comes from the output of the code snipped above.</p>
 <p><strong>Answer: </strong>
 Parameter 'max_depth' 4 for the optimal model.<br></p>
+<p>The result is same as my answer, so I have more confidence with my intuition and my journey to Data Science.</p>
 
 </div>
 </div>
@@ -15094,19 +15086,16 @@ Igx0SSrCQJekIgx0SSri/wAc/74GB/h/NwAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Predicted price for client no 1 is near mean, for client no 2 is more than 1 STD from mean and for client no 3 is more than 3 STD near to maximum price.</p>
-<p>As there are not enough data points for client no2 and client no3, I think our model did not work well for their prices and there are other things that have an important effect on the price that we ignored or deleted them.</p>
-<p>For example look at number 225 and 245 as follows.</p>
-<p>The price of number 225 is approximately 100,000 $ higher than 245 but its LSTAT is higher (the more important factor as we saw), RM is lower (however we can say both have 8 rooms). PTRATIO is the only factor in 225 which is better than 245 but on the other hand, it is the least important factor.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">RM</span> <span class="o">&gt;</span><span class="mf">7.5</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">features</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -15119,7 +15108,7 @@ Igx0SSrCQJekIgx0SSri/wAc/74GB/h/NwAAAABJRU5ErkJggg==
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[32]:</div>
+<div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -15145,121 +15134,56 @@ Igx0SSrCQJekIgx0SSri/wAc/74GB/h/NwAAAABJRU5ErkJggg==
       <th>RM</th>
       <th>LSTAT</th>
       <th>PTRATIO</th>
-      <th>MEDV</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>97</th>
-      <td>8.069</td>
-      <td>4.21</td>
-      <td>18.0</td>
-      <td>812700.0</td>
+      <th>count</th>
+      <td>489.000000</td>
+      <td>489.000000</td>
+      <td>489.000000</td>
     </tr>
     <tr>
-      <th>98</th>
-      <td>7.820</td>
-      <td>3.57</td>
-      <td>18.0</td>
-      <td>919800.0</td>
+      <th>mean</th>
+      <td>6.240288</td>
+      <td>12.939632</td>
+      <td>18.516564</td>
     </tr>
     <tr>
-      <th>176</th>
-      <td>7.765</td>
-      <td>7.56</td>
-      <td>17.8</td>
-      <td>835800.0</td>
+      <th>std</th>
+      <td>0.643650</td>
+      <td>7.081990</td>
+      <td>2.111268</td>
     </tr>
     <tr>
-      <th>196</th>
-      <td>7.610</td>
-      <td>3.11</td>
-      <td>14.7</td>
-      <td>888300.0</td>
+      <th>min</th>
+      <td>3.561000</td>
+      <td>1.980000</td>
+      <td>12.600000</td>
     </tr>
     <tr>
-      <th>197</th>
-      <td>7.853</td>
-      <td>3.81</td>
-      <td>14.7</td>
-      <td>1018500.0</td>
+      <th>25%</th>
+      <td>5.880000</td>
+      <td>7.370000</td>
+      <td>17.400000</td>
     </tr>
     <tr>
-      <th>217</th>
-      <td>8.266</td>
-      <td>4.14</td>
-      <td>17.4</td>
-      <td>940800.0</td>
+      <th>50%</th>
+      <td>6.185000</td>
+      <td>11.690000</td>
+      <td>19.100000</td>
     </tr>
     <tr>
-      <th>218</th>
-      <td>8.040</td>
-      <td>3.13</td>
-      <td>17.4</td>
-      <td>789600.0</td>
+      <th>75%</th>
+      <td>6.575000</td>
+      <td>17.120000</td>
+      <td>20.200000</td>
     </tr>
     <tr>
-      <th>220</th>
-      <td>7.686</td>
-      <td>3.92</td>
-      <td>17.4</td>
-      <td>980700.0</td>
-    </tr>
-    <tr>
-      <th>224</th>
-      <td>8.337</td>
-      <td>2.47</td>
-      <td>17.4</td>
-      <td>875700.0</td>
-    </tr>
-    <tr>
-      <th>225</th>
-      <td>8.247</td>
-      <td>3.95</td>
-      <td>17.4</td>
-      <td>1014300.0</td>
-    </tr>
-    <tr>
-      <th>245</th>
-      <td>8.259</td>
-      <td>3.54</td>
-      <td>19.1</td>
-      <td>898800.0</td>
-    </tr>
-    <tr>
-      <th>252</th>
-      <td>7.520</td>
-      <td>7.26</td>
-      <td>13.0</td>
-      <td>905100.0</td>
-    </tr>
-    <tr>
-      <th>253</th>
-      <td>8.398</td>
-      <td>5.91</td>
-      <td>13.0</td>
-      <td>1024800.0</td>
-    </tr>
-    <tr>
-      <th>263</th>
-      <td>7.691</td>
-      <td>6.58</td>
-      <td>18.6</td>
-      <td>739200.0</td>
-    </tr>
-    <tr>
-      <th>270</th>
-      <td>7.820</td>
-      <td>3.76</td>
-      <td>14.9</td>
-      <td>953400.0</td>
-    </tr>
-    <tr>
-      <th>272</th>
-      <td>7.645</td>
-      <td>3.01</td>
-      <td>14.9</td>
-      <td>966000.0</td>
+      <th>max</th>
+      <td>8.398000</td>
+      <td>37.970000</td>
+      <td>22.000000</td>
     </tr>
   </tbody>
 </table>
@@ -15271,6 +15195,44 @@ Igx0SSrCQJekIgx0SSri/wAc/74GB/h/NwAAAABJRU5ErkJggg==
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Evaluating clients' data based on the above diagram:</p>
+<table>
+<tr> <td>  </td> <td> RM </td> <td> LSTAT </td> <td> PTRATIO </td> 
+<tr> <td> Client 1 </td> <td> 25 percentile </td> <td> 75 percentile  </td> <td> near 75 percentile </td>
+<tr> <td> Client 2 </td> <td> near MiN </td> <td> near MAX </td> <td> near 25 percentile </td> 
+<tr> <td> Client 3 </td> <td> near MAX </td> <td> near MIN </td> <td> near MIN </td>
+</table><p>Observation:</p>
+<p>Client 1:<br></p>
+<ol>
+<li>RM value is in the low 25 percentile in the data. <br> </li>
+<li>Both LSTAT and PTRATIO values are in 75 percentile in the data.<br></li>
+<li>All of 3 factors cause to decrease the price. </li>
+</ol>
+<p>Conclusion: the predicted price is near the blind prediction (mean’s price), as both three factors are not near the mean I think this price does not make sense and the real price should be a little less.<br><br></p>
+<p>Client 2:<br></p>
+<ol>
+<li>RM value is near minimum. <br></li>
+<li>LSTAT value somehow near maximum. <br></li>
+<li>PRTATIO value is maximum. <br></li>
+<li>All of the 3 factors cause a large price decline.</li>
+</ol>
+<p>Conclusion: the predicted price is more than 1 STD from mean and not near the minimum price. Based on the value of RM, LSTAT, and PRTATIO I think the price should be closer to the minimum price and the predicted price is a little bit high.<br><br></p>
+<p>Client 3:<br></p>
+<ol>
+<li>RM value is near maximum. <br></li>
+<li>LSTAT value is somehow near minimum. <br></li>
+<li>PTRATIO value is minimum. <br></li>
+<li>Both 3 factors cause to increase the price.</li>
+</ol>
+<p>Conclusion: the predicted price is approximately 3 STD bigger than the average price. Comparing to maximum price and these factors this price is somehow reasonable.</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
