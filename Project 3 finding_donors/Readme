@@ -1,1 +1,17 @@
 
+Third project of Machine Learning Nanodegree 
+
+Python 2.7
+
+System librarries:
+     Numpy
+     pandas
+     time (time)
+     IPython.display (display) # Allows the use of display() for DataFrames
+     matplotlib 
+     
+Exterior librarries:
+     visuals.py 
+     
+     
+     
